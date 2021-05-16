@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.4.4-SNAPSHOT'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id "com.avast.gradle.docker-compose" version "0.14.3"
 }
 
 group = 'com.DERP'
@@ -21,15 +22,24 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
+	implementation 'io.rxmicro:rxmicro-data-sql-r2dbc-postgresql:0.9'
+	implementation 'io.rxmicro:rxmicro-annotation-processor-data-sql-r2dbc-postgresql:0.9'
+	implementation 'org.postgresql:r2dbc-postgresql:0.9.0.M1'
+	implementation 'io.r2dbc:r2dbc-postgresql:0.8.8.RELEASE'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.projectreactor:reactor-test'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'com.google.code.gson:gson:2.8.6'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'io.projectreactor:reactor-test'
+
+	implementation group: 'org.springframework.boot.experimental', name: 'spring-boot-test-autoconfigure-r2dbc', version: '0.1.0.M3'
+
 }
 
 test {
