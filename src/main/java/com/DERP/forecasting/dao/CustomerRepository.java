@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Repository
 public interface CustomerRepository extends ReactiveCrudRepository<Customer, String> {
 
@@ -13,5 +15,5 @@ public interface CustomerRepository extends ReactiveCrudRepository<Customer, Str
 
     Flux<Customer> findByCityName(String cityName);
 
-    Mono<Customer> findById(long id);
+    Mono<Customer> findById(UUID id);
 }

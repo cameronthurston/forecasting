@@ -5,6 +5,9 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -16,7 +19,7 @@ public class Customer implements Serializable {
 
     @Id
     @Generated
-    private Long id;
+    private UUID id;
     @Column("firstName")
     private String firstName;
     @Column("lastName")
@@ -27,6 +30,8 @@ public class Customer implements Serializable {
     private String stateCode;
     @Column("countryCode")
     private String countryCode;
+    @Column("enrollmentDate")
+    private LocalDateTime enrollmentDate;
 
     public Customer(String firstName, String lastName, String cityName, String stateCode, String countryCode) {
         this.firstName = firstName;
@@ -43,7 +48,7 @@ public class Customer implements Serializable {
                 id, firstName, lastName);
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
